@@ -31,7 +31,7 @@
 	</bean>
 
 	<!-- 配置shiro中的Rleam -->
-	<bean id="jdbcRealm" class="ShiroRealm.ShiroRealm">
+	<bean id="jdbcRealm" class="Shiro.Realm.ShiroRealm">
 
 	</bean>
 
@@ -52,18 +52,16 @@
 
 
 	<bean id="shiroFilter"
-		class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		class="Shiro.Config.MyShiroFilterFactoryBean">
 		<property name="securityManager" ref="securityManager" />
-		<property name="loginUrl" value="/SwitchPage.jsp" />  <!--没有登录的时候，跳转到这个页面 -->
-		<!-- <property name="successUrl" value="/home.jsp"/> -->
+		<property name="loginUrl" value="/Login" />  <!--没有登录的时候，跳转到这个页面 -->
+		<property name="successUrl" value="/home.jsp"/>
 		<!-- <property name="unauthorizedUrl" value="/Register" /> 当没有权限的时候，跳转到这个url -->
 
 		<property name="filterChainDefinitions">
 			<value>
-				/Login = anon
-				/Registe = anon
-				/SwitchPage.jsp=anon
-				/** = authc
+				/home.jsp = authc
+				/** = anon
 			</value>
 		</property>
 	</bean>

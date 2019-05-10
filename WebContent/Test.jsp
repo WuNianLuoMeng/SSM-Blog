@@ -2,16 +2,11 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
-<head >
-<script type="text/javascript">
-function jump(){
-window.location.href="Blog-SSM/Login"
-}
-</script>
+<head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
-</head >
-<body onload="jump()">
-<h1>asd</h1>
+</head>
+<body>
+<h1>asd </h1>
 </body>
 </html>

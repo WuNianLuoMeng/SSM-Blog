@@ -27,27 +27,27 @@
 				<h3 class="title">登录博客系统</h3>
 				<div class="clear"></div>
 				<div class="login-form">
-					<form action="" method="post">
+					<form action="${pageContext.request.contextPath }/login" method="post">
 						<div class="user-name">
 							<label for="user"><i class="am-icon-user"></i></label> <input
 								type="text" name="number" id="user" placeholder="手机号">
 						</div>
 						<div class="user-pass">
 							<label for="password"><i class="am-icon-lock"></i></label> <input
-								type="password" name="" id="password" placeholder="请输入密码">
+								type="password" name="password" id="password" placeholder="请输入密码">
 						</div>
-					</form>
-				</div>
-
-				<div class="login-links">
-					<label for="remember-me"><input id="remember-me"
-						type="checkbox">记住密码</label> <a href="#" class="am-fr">忘记密码</a> 
-						<a  href="${pageContext.request.contextPath}/Registe" class="zcnext am-fr am-btn-default">注册</a> <br />
-				</div>
-				<div class="am-cf">
+					<div class="am-cf">
 					<input type="submit" name="" value="登 录"
 						class="am-btn am-btn-primary am-btn-sm">
+					</div>
+				</form>
 				</div>
+				
+				<div class="login-links">
+					
+						<a  href="${pageContext.request.contextPath}/Registe" class="zcnext am-fr am-btn-default">注册</a> <br />
+				</div>
+				
 			</div>
 		</div>
 	</div>

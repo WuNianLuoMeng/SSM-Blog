@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+
+	<!-- ========================================================= Shiro Core 
+		Components - Not Spring Specific ========================================================= -->
+	<!-- 配置管理器 -->
+	<bean id="securityManager"
+		class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<property name="cacheManager" ref="cacheManager" />
+
+		<property name="sessionMode" value="native" />
+		<property name="realm" ref="jdbcRealm" />
+	</bean>
+
+
+	<!-- 配置缓存管理器 -->
+	<bean id="cacheManager"
+		class="org.apache.shiro.cache.ehcache.EhCacheManager">
+
+		<property name="cacheManagerConfigFile"
+			value="classpath:ehcache.xml" />
+	</bean>
+
+	<!-- 配置shiro中的Rleam -->
+	<bean id="jdbcRealm" class="ShiroRealm.ShiroRealm">
+
+	</bean>
+
+
+	<bean id="lifecycleBeanPostProcessor"
+		class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
+
+
+	<!-- 配置shiro的注解 -->
+	<bean
+		class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
+		depends-on="lifecycleBeanPostProcessor" />
+	<bean
+		class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+		<property name="securityManager" ref="securityManager" />
+	</bean>
+
+
+
+	<bean id="shiroFilter"
+		class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<property name="securityManager" ref="securityManager" />
+		<property name="loginUrl" value="/SwitchPage.jsp" />  <!--没有登录的时候，跳转到这个页面 -->
+		<!-- <property name="successUrl" value="/home.jsp"/> -->
+		<!-- <property name="unauthorizedUrl" value="/Register" /> 当没有权限的时候，跳转到这个url -->
+
+		<property name="filterChainDefinitions">
+			<value>
+				/Login = anon
+				/Registe = anon
+				/SwitchPage.jsp=anon
+				/** = authc
+			</value>
+		</property>
+	</bean>
+
+</beans>

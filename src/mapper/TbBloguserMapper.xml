@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.TbBloguserMapper">
+  <resultMap id="BaseResultMap" type="pojo.TbBloguser">
+    <id column="BlogUserNumber" jdbcType="VARCHAR" property="blogusernumber" />
+    <result column="BlogUserName" jdbcType="VARCHAR" property="blogusername" />
+    <result column="BlogUserPassWord" jdbcType="VARCHAR" property="bloguserpassword" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    BlogUserNumber, BlogUserName, BlogUserPassWord
+  </sql>
+  <select id="selectByExample" parameterType="pojo.TbBloguserExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_bloguser
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_bloguser
+    where BlogUserNumber = #{blogusernumber,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tb_bloguser
+    where BlogUserNumber = #{blogusernumber,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="pojo.TbBloguserExample">
+    delete from tb_bloguser
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="pojo.TbBloguser">
+    insert into tb_bloguser (BlogUserNumber, BlogUserName, BlogUserPassWord
+      )
+    values (#{blogusernumber,jdbcType=VARCHAR}, #{blogusername,jdbcType=VARCHAR}, #{bloguserpassword,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="pojo.TbBloguser">
+    insert into tb_bloguser
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="blogusernumber != null">
+        BlogUserNumber,
+      </if>
+      <if test="blogusername != null">
+        BlogUserName,
+      </if>
+      <if test="bloguserpassword != null">
+        BlogUserPassWord,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="blogusernumber != null">
+        #{blogusernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="blogusername != null">
+        #{blogusername,jdbcType=VARCHAR},
+      </if>
+      <if test="bloguserpassword != null">
+        #{bloguserpassword,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="pojo.TbBloguserExample" resultType="java.lang.Long">
+    select count(*) from tb_bloguser
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tb_bloguser
+    <set>
+      <if test="record.blogusernumber != null">
+        BlogUserNumber = #{record.blogusernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.blogusername != null">
+        BlogUserName = #{record.blogusername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bloguserpassword != null">
+        BlogUserPassWord = #{record.bloguserpassword,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tb_bloguser
+    set BlogUserNumber = #{record.blogusernumber,jdbcType=VARCHAR},
+      BlogUserName = #{record.blogusername,jdbcType=VARCHAR},
+      BlogUserPassWord = #{record.bloguserpassword,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="pojo.TbBloguser">
+    update tb_bloguser
+    <set>
+      <if test="blogusername != null">
+        BlogUserName = #{blogusername,jdbcType=VARCHAR},
+      </if>
+      <if test="bloguserpassword != null">
+        BlogUserPassWord = #{bloguserpassword,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where BlogUserNumber = #{blogusernumber,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="pojo.TbBloguser">
+    update tb_bloguser
+    set BlogUserName = #{blogusername,jdbcType=VARCHAR},
+      BlogUserPassWord = #{bloguserpassword,jdbcType=VARCHAR}
+    where BlogUserNumber = #{blogusernumber,jdbcType=VARCHAR}
+  </update>
+</mapper>

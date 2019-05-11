@@ -32,7 +32,12 @@
 
 	<!-- 配置shiro中的Rleam -->
 	<bean id="jdbcRealm" class="Shiro.Realm.ShiroRealm">
-
+		<property name="credentialsMatcher">
+			<bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+				<property name="hashAlgorithmName" value="MD5"></property>
+				<property name="hashIterations" value="1024"></property>
+			</bean>
+		</property>
 	</bean>
 
 
@@ -57,7 +62,11 @@
 		<property name="loginUrl" value="/Login" />  <!--没有登录的时候，跳转到这个页面 -->
 		<property name="successUrl" value="/home.jsp"/>
 		<!-- <property name="unauthorizedUrl" value="/Register" /> 当没有权限的时候，跳转到这个url -->
-
+		<!--
+			authc:用户登录
+			anno:匿名访问
+			logout:用户登出 ，是为了清除当前用户的缓存
+		 -->
 		<property name="filterChainDefinitions">
 			<value>
 				/home.jsp = authc

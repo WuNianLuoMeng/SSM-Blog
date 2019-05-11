@@ -4,10 +4,10 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>主界面</title>
+<title>Insert title here</title>
 </head>
 <body>
-<!-- 引入头部jsp -->
-<%@ include file="./Top_Buttom/Top.jsp" %>
+<h1>用户登录成功页面 </h1>
+<%-- <a href="${pageContext.request.contextPath}/logout">Logout</a> --%>
 </body>
 </html>

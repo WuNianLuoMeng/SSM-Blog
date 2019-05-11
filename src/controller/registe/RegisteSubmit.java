@@ -10,6 +10,7 @@ import java.util.concurrent.Future;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.shiro.crypto.hash.SimpleHash;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
@@ -40,31 +41,30 @@ public class RegisteSubmit {
 	private Resgister register;
 
 	@RequestMapping("/Register")
-	public String Register(String number, String password,HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public String Register(String number, String password, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
 		// 执行任务
 		Future<String> future = exec.submit(new Callable<String>() {
 			@Override
 			public String call() throws Exception {
 				try {
-
+					String hashAlgorithmName = "MD5";
+					String credentials = password;
+					int hashIterations = 1024;
+					Object salt = number;
+					Object Password = new SimpleHash(hashAlgorithmName, credentials, salt, hashIterations);
+					//System.out.println(Password.toString());
 					TbBloguser user = new TbBloguser();
 					// 设置number
 					user.setBlogusernumber(number);
 					// 设置初始化昵称
 					user.setBlogusername(number);
 					// 设置密码
-					user.setBloguserpassword(password);
+					user.setBloguserpassword(Password.toString());
 					boolean flag = register.insert(user);
 					return flag == true ? "Login/Login" : "Login/Registe";
 				} catch (Exception e) {
-					// 当出现错误的时候，返回注册界面
-//					response.setCharacterEncoding("utf-8");
-//					response.setContentType("text/html");
-//					PrintWriter out = response.getWriter();
-//					out.println("<script>alert('注册失败！');</script>");
-//					response.getWriter().flush();
-//					response.getWriter().close();
-//					System.out.println("asds");
+					System.out.println(e.getMessage());
 					return "Login/Registe";
 				}
 			}

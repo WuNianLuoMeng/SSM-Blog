@@ -9,5 +9,15 @@
 <body>
 <!-- 引入头部jsp -->
 <%@ include file="./Top_Buttom/Top.jsp" %>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+<a href="${pageContext.request.contextPath }/Logout">退出</a>
 </body>
 </html>

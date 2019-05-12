@@ -1,22 +1,13 @@
 package Shiro.Realm;
 
 
-import java.util.HashSet;
-import java.util.Set;
-
-import org.apache.log4j.spi.LoggerFactory;
-import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.authz.AuthorizationInfo;
-import org.apache.shiro.authz.SimpleAuthorizationInfo;
-import org.apache.shiro.mgt.RealmSecurityManager;
-import org.apache.shiro.realm.AuthorizingRealm;
-import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.realm.AuthenticatingRealm;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,12 +24,12 @@ import pojo.TbBloguser;
 * @date 2019年5月11日
  */
 @Service
-public class ShiroRealm extends AuthorizingRealm {
+public class SecondRealm extends AuthenticatingRealm {
 	@Autowired
 	private TbBloguserMapper mapper;
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-//		System.out.println("1");
+//		System.out.println("2");
 		//1,类型的转换
 		UsernamePasswordToken Token = (UsernamePasswordToken) token;
 		//2，从这个中获取number
@@ -63,25 +54,9 @@ public class ShiroRealm extends AuthorizingRealm {
 		//System.out.println(info.getCredentials());
 		return info;
 	}
-	@Override
-	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-		// TODO Auto-generated method stub
-		
-//		String usernumber = (String) principals.getPrimaryPrincipal();
-//		Set<String> roles = new HashSet<>();
-//		roles.add("user");
-//		if("1234".equals(usernumber)) {
-//			roles.add("admin");
-//		}
-//		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo(roles); 		
-//		return info;
-		return null;
-	}
 
 	
-	//清除缓存
 	
-
 	
 	
 

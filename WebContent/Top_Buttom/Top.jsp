@@ -27,8 +27,8 @@
 					&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp
 					&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp
 					&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp
-					<a href="">用户名</a>
-				</a><a href="">退出</a></li>
+					<a href="">${ UserName }</a>
+				</a><a href="${pageContext.request.contextPath }/Logout?usernumber=${UserNumber }">退出</a></li>
 			</ul>
 		</div>
 	</div>

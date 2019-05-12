@@ -62,10 +62,10 @@ public class RegisteSubmit {
 					// ÉèÖÃÃÜÂë
 					user.setBloguserpassword(Password.toString());
 					boolean flag = register.insert(user);
-					return flag == true ? "Login/Login" : "Login/Registe";
+					return flag == true ? "redirect:/Login" : "redirect:/Registe";
 				} catch (Exception e) {
 					System.out.println(e.getMessage());
-					return "Login/Registe";
+					return "redirect:/Registe";
 				}
 			}
 		});

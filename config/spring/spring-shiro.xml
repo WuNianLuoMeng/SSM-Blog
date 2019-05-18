@@ -21,7 +21,9 @@
 		<property name="authenticator" ref="authenticator"></property>
 	</bean>
 
+	
 
+	
 	<!-- 配置缓存管理器 -->
 	<bean id="cacheManager"
 		class="org.apache.shiro.cache.ehcache.EhCacheManager">

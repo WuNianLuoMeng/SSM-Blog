@@ -27,8 +27,8 @@
 					&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp
 					&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp
 					&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp
-					<a href="">${ UserName }</a>
-				</a><a href="${pageContext.request.contextPath }/Logout?usernumber=${UserNumber }">退出</a></li>
+					<a href="${pageContext.request.contextPath }/Detail/${UserNumber }">${ UserName }</a>
+				<a href="${pageContext.request.contextPath }/Logout">退出</a></li>
 			</ul>
 		</div>
 	</div>

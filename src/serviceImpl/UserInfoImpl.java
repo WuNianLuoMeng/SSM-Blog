@@ -24,11 +24,14 @@ public class UserInfoImpl implements UserInfo {
 	public TbBloguser GetUserInfo(String number) throws Exception {
 		
 		//根据用户的number查询用户的信息
-		TbBloguser UserInfo = mapper.selectByPrimaryKey(number);
-		
-		
-		
+		TbBloguser UserInfo = mapper.selectByPrimaryKey(number);					
 		return UserInfo;
+	}
+
+	@Override
+	public void changemessage(TbBloguser user) throws Exception {
+		// TODO Auto-generated method stub		
+		mapper.updateByPrimaryKeySelective(user);
 	}
 
 }

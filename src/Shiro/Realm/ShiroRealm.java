@@ -66,23 +66,17 @@ public class ShiroRealm extends AuthorizingRealm {
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
 		// TODO Auto-generated method stub
-		
-//		String usernumber = (String) principals.getPrimaryPrincipal();
-//		Set<String> roles = new HashSet<>();
-//		roles.add("user");
-//		if("1234".equals(usernumber)) {
-//			roles.add("admin");
-//		}
-//		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo(roles); 		
-//		return info;
-		return null;
+		System.out.println("asd");
+		String usernumber = (String) principals.getPrimaryPrincipal();
+		Set<String> roles = new HashSet<>();
+		if(usernumber!="") {
+			roles.add("user");
+		}
+		if("1234".equals(usernumber)) {
+			roles.add("admin");
+		}
+		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo(roles); 		
+		return info;
 	}
-
-	
-	//Çå³ý»º´æ
-	
-
-	
-	
 
 }

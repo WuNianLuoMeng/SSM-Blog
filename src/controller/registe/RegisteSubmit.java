@@ -1,7 +1,6 @@
 package controller.registe;
 
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.net.URLEncoder;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -48,8 +47,9 @@ public class RegisteSubmit {
 			@Override
 			public String call() throws Exception {
 				try {
+					String changepassword=URLEncoder.encode(password, "utf-8");
 					String hashAlgorithmName = "MD5";
-					String credentials = password;
+					String credentials = changepassword;
 					int hashIterations = 1024;
 					Object salt = number;
 					Object Password = new SimpleHash(hashAlgorithmName, credentials, salt, hashIterations);

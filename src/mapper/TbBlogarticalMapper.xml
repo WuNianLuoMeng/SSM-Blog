@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.TbBlogarticalMapper">
+  <resultMap id="BaseResultMap" type="pojo.TbBlogartical">
+    <id column="BlogId" jdbcType="INTEGER" property="blogid" />
+    <result column="BlogUserNumber" jdbcType="VARCHAR" property="blogusernumber" />
+    <result column="BlogTitle" jdbcType="VARCHAR" property="blogtitle" />
+    <result column="BlogData" jdbcType="DATE" property="blogdata" />
+    <result column="BlogTraffic" jdbcType="INTEGER" property="blogtraffic" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="pojo.TbBlogartical">
+    <result column="BlogContent" jdbcType="LONGVARCHAR" property="blogcontent" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    BlogId, BlogUserNumber, BlogTitle, BlogData, BlogTraffic
+  </sql>
+  <sql id="Blob_Column_List">
+    BlogContent
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="pojo.TbBlogarticalExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_blogartical
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="pojo.TbBlogarticalExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_blogartical
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_blogartical
+    where BlogId = #{blogid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_blogartical
+    where BlogId = #{blogid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="pojo.TbBlogarticalExample">
+    delete from tb_blogartical
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="pojo.TbBlogartical">
+    insert into tb_blogartical (BlogId, BlogUserNumber, BlogTitle, 
+      BlogData, BlogTraffic, BlogContent
+      )
+    values (#{blogid,jdbcType=INTEGER}, #{blogusernumber,jdbcType=VARCHAR}, #{blogtitle,jdbcType=VARCHAR}, 
+      #{blogdata,jdbcType=DATE}, #{blogtraffic,jdbcType=INTEGER}, #{blogcontent,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="pojo.TbBlogartical">
+    insert into tb_blogartical
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="blogid != null">
+        BlogId,
+      </if>
+      <if test="blogusernumber != null">
+        BlogUserNumber,
+      </if>
+      <if test="blogtitle != null">
+        BlogTitle,
+      </if>
+      <if test="blogdata != null">
+        BlogData,
+      </if>
+      <if test="blogtraffic != null">
+        BlogTraffic,
+      </if>
+      <if test="blogcontent != null">
+        BlogContent,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="blogid != null">
+        #{blogid,jdbcType=INTEGER},
+      </if>
+      <if test="blogusernumber != null">
+        #{blogusernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="blogtitle != null">
+        #{blogtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="blogdata != null">
+        #{blogdata,jdbcType=DATE},
+      </if>
+      <if test="blogtraffic != null">
+        #{blogtraffic,jdbcType=INTEGER},
+      </if>
+      <if test="blogcontent != null">
+        #{blogcontent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="pojo.TbBlogarticalExample" resultType="java.lang.Long">
+    select count(*) from tb_blogartical
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tb_blogartical
+    <set>
+      <if test="record.blogid != null">
+        BlogId = #{record.blogid,jdbcType=INTEGER},
+      </if>
+      <if test="record.blogusernumber != null">
+        BlogUserNumber = #{record.blogusernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.blogtitle != null">
+        BlogTitle = #{record.blogtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.blogdata != null">
+        BlogData = #{record.blogdata,jdbcType=DATE},
+      </if>
+      <if test="record.blogtraffic != null">
+        BlogTraffic = #{record.blogtraffic,jdbcType=INTEGER},
+      </if>
+      <if test="record.blogcontent != null">
+        BlogContent = #{record.blogcontent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update tb_blogartical
+    set BlogId = #{record.blogid,jdbcType=INTEGER},
+      BlogUserNumber = #{record.blogusernumber,jdbcType=VARCHAR},
+      BlogTitle = #{record.blogtitle,jdbcType=VARCHAR},
+      BlogData = #{record.blogdata,jdbcType=DATE},
+      BlogTraffic = #{record.blogtraffic,jdbcType=INTEGER},
+      BlogContent = #{record.blogcontent,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tb_blogartical
+    set BlogId = #{record.blogid,jdbcType=INTEGER},
+      BlogUserNumber = #{record.blogusernumber,jdbcType=VARCHAR},
+      BlogTitle = #{record.blogtitle,jdbcType=VARCHAR},
+      BlogData = #{record.blogdata,jdbcType=DATE},
+      BlogTraffic = #{record.blogtraffic,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="pojo.TbBlogartical">
+    update tb_blogartical
+    <set>
+      <if test="blogusernumber != null">
+        BlogUserNumber = #{blogusernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="blogtitle != null">
+        BlogTitle = #{blogtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="blogdata != null">
+        BlogData = #{blogdata,jdbcType=DATE},
+      </if>
+      <if test="blogtraffic != null">
+        BlogTraffic = #{blogtraffic,jdbcType=INTEGER},
+      </if>
+      <if test="blogcontent != null">
+        BlogContent = #{blogcontent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where BlogId = #{blogid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="pojo.TbBlogartical">
+    update tb_blogartical
+    set BlogUserNumber = #{blogusernumber,jdbcType=VARCHAR},
+      BlogTitle = #{blogtitle,jdbcType=VARCHAR},
+      BlogData = #{blogdata,jdbcType=DATE},
+      BlogTraffic = #{blogtraffic,jdbcType=INTEGER},
+      BlogContent = #{blogcontent,jdbcType=LONGVARCHAR}
+    where BlogId = #{blogid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="pojo.TbBlogartical">
+    update tb_blogartical
+    set BlogUserNumber = #{blogusernumber,jdbcType=VARCHAR},
+      BlogTitle = #{blogtitle,jdbcType=VARCHAR},
+      BlogData = #{blogdata,jdbcType=DATE},
+      BlogTraffic = #{blogtraffic,jdbcType=INTEGER}
+    where BlogId = #{blogid,jdbcType=INTEGER}
+  </update>
+</mapper>

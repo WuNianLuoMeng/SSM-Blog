@@ -3,8 +3,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="./resource/style/css/home.css">
-<script src="./resource/js/jquery-3.3.1.js"></script>
 <meta charset="utf-8">
 <title></title>
 </head>
@@ -14,7 +12,7 @@
 			<ul style="list-style: none">
 				<li>
 					<a href="">博客乐园</a> 
-				 	<a href="${pageContext.request.contextPath }/WriteBlog">写博客</a>
+				 	<a href="${pageContext.request.contextPath }/WriteBlog?UserNumber=${UserNumber }&UserName=${UserName}">写博客</a>
 					<a href="">关于</a>
 					&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp
 					&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp

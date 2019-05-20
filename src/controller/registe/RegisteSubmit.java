@@ -36,6 +36,9 @@ import service.Resgister;
 public class RegisteSubmit {
 	// 线程池
 	public static ExecutorService exec = Executors.newCachedThreadPool();
+	//ThreadLocal变量
+	private static ThreadLocal<String> name=new ThreadLocal<>(); 
+	
 	@Autowired
 	private Resgister register;
 
@@ -69,7 +72,8 @@ public class RegisteSubmit {
 				}
 			}
 		});
-		return future.get();
+		name.set(future.get());
+		return name.get();
 
 	}
 }

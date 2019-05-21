@@ -1,0 +1,107 @@
+@charset "UTF-8";
+/*********/
+.newsItem, #blog-calendar {
+	margin-bottom: 15px;
+	text-indent: 0;
+	padding: 10px;
+	background: #FAFCFD;
+	border-radius: 7px;
+	box-shadow: 1px 1px 2px #A7A8AD;
+	line-height: 1.5;
+	width: 200px;
+}
+
+.catListTitle {
+	background: #390;
+	border-bottom: 1px solid #006600;
+	border-top-left-radius: 7px;
+	border-top-right-radius: 7px;
+	color: #FFFFFF;
+	font-size: 1.2em;
+	height: 1.8em;
+	line-height: 1.8em;
+	padding: 5px;
+	text-indent: 0.5em;
+	text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
+}
+
+#profile_block {
+	margin-top: 5px;
+	line-height: 1.5;
+	text-align: left;
+}
+
+a {
+	color: black;
+	text-decoration: none;
+}
+
+
+/******/
+.catListEssay, .catListLink, .catListNoteBook, .catListTag, .catListPostCategory, .catListPostArchive, .catListImageCategory, .catListArticleArchive, .catListView, .catListFeedback, .mySearch, .catListComment, .catListBlogRank, .catList, .catListArticleCategory {
+    margin-bottom: 15px;
+	text-indent: 0;
+	padding: 10px;
+	background: #FAFCFD;
+	border-radius: 7px;
+	box-shadow: 1px 1px 2px #A7A8AD;
+	line-height: 1.5;
+	width: 200px;
+}
+.catListTitle {
+    background-color: rgb(255,255,255);
+    border-bottom: 1px solid #006600;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    color: rgb(0,0,0);
+    font-size: 1.2em;
+    height: 1.8em;
+    line-height: 1.8em;
+    padding: 5px;
+    text-indent: 0.5em;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
+}
+#sideBar {
+    width: 230px;
+    min-height: 200px;
+    padding: 0px 0 0px 5px;
+    float: left;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    word-break: break-all;
+}
+.div_my_zzk {
+    margin-left: 13px;
+}
+.div_my_zzk {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.input_my_zzk {
+    width: 120px;
+}
+.input_my_zzk {
+    width: 100px;
+    vertical-align: middle;
+    height: 20px;
+}
+input.btn_my_zzk {
+    vertical-align: middle;
+    height: 22px;
+    font-size: 12px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+h3 {
+    display: block;
+    font-size: 1.17em;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+input[type=button] {
+    -webkit-appearance: button;
+}

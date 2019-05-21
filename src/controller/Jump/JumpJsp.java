@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import mapper.TbBloguserMapper;
@@ -42,8 +43,12 @@ public class JumpJsp {
 	public String JumpLogin() {
 		return "redirect:/Login";
 	}
-//	@RequestMapping("/test")
-//	public void handleRequest(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-//		resp.sendRedirect("home.jsp");
-//	}
+	@RequestMapping("/UserBlog/{UserNumber}")
+	public String JumpUserBlog(@PathVariable String UserNumber,String UserName,ModelMap model) {
+		
+		model.put("UserNumber",UserNumber);
+		model.put("UserName",UserName);
+		return "User/UserBlog";
+	}
+	
 }

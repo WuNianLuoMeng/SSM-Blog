@@ -28,6 +28,7 @@
 					&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp
 					<a href="${pageContext.request.contextPath }/Login" id="href1">登录</a>
 					<a href="${pageContext.request.contextPath }/Detail/${UserNumber }" id="href2">${ UserName }</a>
+					<a href="${pageContext.request.contextPath }/UserBlog/${UserNumber }?UserName=${UserName }" id="href3">博客主页</a>
 				<a href="${pageContext.request.contextPath }/Logout">退出</a></li>
 			</ul>
 		</div>
@@ -36,14 +37,19 @@
 <script>
 //渲染界面前所要执行的函数
 $().ready(function() {
-	if(${ UserNumber}==""){
+	var UserName = "${UserNumber }";
+	if(UserName==""){
+	
 		document.getElementById("href1").style.display="";
 		document.getElementById("href2").style.display="none";
+		document.getElementById("href3").style.display="none";
+		
 	} else{
+
 		document.getElementById("href1").style.display="none";
 		document.getElementById("href2").style.display="";
+		document.getElementById("href3").style.display="";
 	}
 });
-
 </script>
 </html>

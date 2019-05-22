@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<!-- 引入jstl标签库 -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -84,6 +86,26 @@
 				</div>
 			</div>
 		</div>
+	</div>
+	<div style="padding-top: 50px;"></div>
+	<div id="Content" style="margin-left:250px;width:1000px;background-color:rgb(255,255,255)" >
+		<h1 style="padding-left:20px;">博客内容</h1>
+		<hr/>
+		<c:forEach items="${Data}" var="item">
+			<div style="padding-left:20px;">
+				<a href="">${item.blogtitle}</a>
+			</div>		
+			<br>           
+        </c:forEach>
+        <br>
+        <br>
+        <div style="padding-left:400px;">
+        	<a href="${pageContext.request.contextPath }/UserBlog/${UserNumber }?UserName=${UserName }&page=${ProPage }" class="previous" style=" background-color: #f1f1f1;color: black;text-decoration: none;display: inline-block;padding: 8px 16px;">&laquo; 上一页</a>
+			<a href="${pageContext.request.contextPath }/UserBlog/${UserNumber }?UserName=${UserName }&page=${NextPage }" class="next" style=" background-color: #f1f1f1;color: black;text-decoration: none;display: inline-block;padding: 8px 16px;">下一页 &raquo;</a>
+        </div>
+        <br>
+        <br>
+        
 	</div>
 </body>
 </html>

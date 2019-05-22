@@ -1,38 +1,45 @@
 package controller.Jump;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.util.List;
+
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.github.pagehelper.PageInfo;
+
 
 import mapper.TbBloguserMapper;
+import pojo.TbBlogartical;
 import pojo.TbBloguser;
+import service.BlogInfo;
 
 /**
  * 
  * <p>
- * Title: JumpJsp.java<／p>
+ * Title: JumpJsp.java<锟斤拷p>
  * <p>
- * Description: 负责中间页面跳转的Controller <／p>
+ * Description: Controller <锟斤拷p>
  * <p>
- * Copyright: Copyright (c) 2007<／p>
+ * Copyright: Copyright (c) 2007<锟斤拷p>
  * 
  * @author Ma
- * @date 2019年5月19日
  */
 @Controller
 public class JumpJsp {
 	@Autowired
 	TbBloguserMapper mapper;
-
+	@Autowired
+	BlogInfo BlogService;
 	@RequestMapping("/Home")
 	public String JumpHome(String UserNumber, ModelMap model) {
-		/* 获取用户信息 */
+		/* 璺宠浆鍒癶ome鐣岄潰 */
 		TbBloguser user = mapper.selectByPrimaryKey(UserNumber);
 		model.put("UserName", user.getBlogusername());
 		model.put("UserNumber", UserNumber);
@@ -44,10 +51,22 @@ public class JumpJsp {
 		return "redirect:/Login";
 	}
 	@RequestMapping("/UserBlog/{UserNumber}")
-	public String JumpUserBlog(@PathVariable String UserNumber,String UserName,ModelMap model) {
-		
+	public String JumpUserBlog(@PathVariable String UserNumber,String UserName,ModelMap model,@RequestParam(value="page",defaultValue = "1") int page) throws Exception{
+		PageInfo<TbBlogartical> result = BlogService.GetBlogInfo(UserNumber,page);
+		List<TbBlogartical> list = result.getList();
 		model.put("UserNumber",UserNumber);
 		model.put("UserName",UserName);
+		if(page-1!=0) {
+			model.put("ProPage",page-1);
+		} else {
+			model.put("ProPage",page);
+		}
+		if((page-1)*10+list.size()==result.getTotal()){
+			model.put("NextPage",page);
+		} else {
+			model.put("NextPage",page+1);
+		}
+		model.put("Data",list);
 		return "User/UserBlog";
 	}
 	

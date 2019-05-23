@@ -36,5 +36,4 @@
 		<property name="sqlSessionFactoryBeanName"
 			value="sqlSessionFactory"></property>
 	</bean>
-<!-- 	<bean id="userservice" class="serviceImpl.UserserviceImpl"></bean> -->
 </beans>

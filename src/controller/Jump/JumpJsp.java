@@ -55,6 +55,7 @@ public class JumpJsp {
 		PageInfo<TbBlogartical> result = BlogService.GetBlogInfo(UserNumber,page);
 		List<TbBlogartical> list = result.getList();
 		model.put("UserNumber",UserNumber);
+		model.put("BlogUserName",UserName);
 		model.put("UserName",UserName);
 		if(page-1!=0) {
 			model.put("ProPage",page-1);

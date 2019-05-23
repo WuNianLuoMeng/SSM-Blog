@@ -11,7 +11,7 @@
 		<div class="menu">
 			<ul style="list-style: none">
 				<li>
-					<a href="">博客乐园</a> 
+					<a href="${pageContext.request.contextPath }/AllBlog?UserNumber=${UserNumber }&UserName=${UserName }">博客乐园</a> 
 				 	<a href="${pageContext.request.contextPath }/WriteBlog?UserNumber=${UserNumber }&UserName=${UserName}">写博客</a>
 					<a href="">关于</a>
 					&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp
@@ -27,7 +27,7 @@
 					&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp
 					&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp
 					<a href="${pageContext.request.contextPath }/Login" id="href1">登录</a>
-					<a href="${pageContext.request.contextPath }/Detail/${UserNumber }" id="href2">${ UserName }</a>
+					<a href="${pageContext.request.contextPath }/Detail/${UserNumber }" id="href2">${UserName }</a>
 					<a href="${pageContext.request.contextPath }/UserBlog/${UserNumber }?UserName=${UserName }&page=1" id="href3">博客主页</a>
 				<a href="${pageContext.request.contextPath }/Logout">退出</a></li>
 			</ul>
@@ -37,7 +37,7 @@
 <script>
 //渲染界面前所要执行的函数
 $().ready(function() {
-	var UserName = "${UserNumber }";
+	var UserName = "${UserName }";
 	if(UserName==""){
 	
 		document.getElementById("href1").style.display="";

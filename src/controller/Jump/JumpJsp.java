@@ -43,6 +43,10 @@ public class JumpJsp {
 		TbBloguser user = mapper.selectByPrimaryKey(UserNumber);
 		model.put("UserName", user.getBlogusername());
 		model.put("UserNumber", UserNumber);
+		
+		
+		
+		
 		return "forward:/home.jsp";
 	}
 

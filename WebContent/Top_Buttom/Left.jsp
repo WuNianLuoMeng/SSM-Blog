@@ -30,8 +30,14 @@
 							<h3 class="catListTitle">搜索</h3>
 							<div id="sidebar_search_box">
 								<div id="widget_my_zzk" class="div_my_zzk">
-									<input type="text" id="q" class="input_my_zzk">
-									<input type="button" value="找找看" id="btnZzk" class="btn_my_zzk">
+									<form action="${pageContext.request.contextPath }/Search" method="get">
+										<input type="text" id="q" name="content" class="input_my_zzk">
+										<input type="text" style="display:none" value="${UserNumber }" name="UserNumber">
+										<input type="text" style="display:none" value="${UserName }" name="UserName">
+										<input type="text" style="display:none" value="${BlogUserName }" name="BlogUserName">										
+										<input type="text" style="display:none" value="1" name="page">
+										<input type="submit" value="找找看" id="btnZzk" class="btn_my_zzk">
+									</form>
 								</div>
 								<div id="widget_my_zzk" class="div_my_zzk">
 									<input type="text" id="q" class="input_my_zzk">

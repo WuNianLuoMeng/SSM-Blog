@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<!-- 引入jstl标签库 -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,5 +31,83 @@
 			<br>
 			<br>
 </div>
+<div id="Comment" style="margin-left: 300px; width:1000px; background-color:rgb(255,255,255)">
+<h3>评论列表</h3>
+<hr>
+<c:forEach items="${Date}" var="item" varStatus="index">
+<c:if test="${item.flog==0 }">
+	<font style="padding-left:10px; font-size: 15px;">${index.count }楼</font>
+	<div style="padding-left:10px;">
+		<a href="">${item.firstname }</a>:&nbsp${item.commentContent }
+		<button id="${index.count }" class="${index.count }" onclick="comment(${index.count })" style="border:none;background-color:rgb(255,255,255);font-size: 15px;">回复</button>
+		<form action="${pageContext.request.contextPath }/SubmitCommit" method="POST">
+			<input type="text" id="Id${index.count }" name="comment" style="display:none" placeholder="回复的内容"/>
+			<input style="display:none" name="firstusername" value="${UserName }"/>
+			<input style="display:none" name="firstusernumber" value="${UserNumber }"/>
+			<input style="display:none" name="secondusername" value="${item.firstname }"/>
+			<input style="display:none" name="secondusernumber" value="${item.firstnumber }"/>
+			<input style="display:none" name="flog" value="1"/>
+			<input style="display:none" name="blogid" value="${BlogId }"/>
+			<input type="submit" id="B${index.count }" style="display:none">
+		</form>                                  
+		<hr style="background-color:rgb(210,216,222)">
+	</div>
+</c:if>
+<c:if test="${item.flog==1 }">
+	<font style="padding-left:10px; font-size: 15px;">${index.count }楼</font>
+	<div style="padding-left:10px;">
+		<a href="">${item.firstname }</a>&nbsp回复&nbsp<a href="">${item.secondname }</a>:&nbsp${item.commentContent }
+		<input type="text" id="Id${index.count }"  style="display:none" placeholder="回复的内容"/>
+		<input type="submit" id="B${index.count }" style="display:none">		
+		<hr style="background-color:rgb(210,216,222)">
+	</div>
+</c:if>
+</c:forEach>
+<form action="${pageContext.request.contextPath }/SubmitCommit" method="POST">
+	<input type="text" name="comment" class="Input_Comment" id="Input_Comment" style="margin-left:10px;height: 36px;width:800px;" placeholder="想对作者说点啥">
+	<input type="submit" id="BComment" value="确认提交" style="margin-top: 6px;margin-bottom: 6px;height: 30px;
+    line-height: 28px;
+    min-width: 72px;    color: #fff !important;
+    border: 1px solid #ca0c16 !important;
+    background-color: #ca0c16 !important;
+    -webkit-transition: background-color .1s ease-in-out,border-color .1s ease-in-out;
+    transition: background-color .1s ease-in-out,border-color .1s ease-in-out;"/>
+    <input style="display:none" name="firstusername" value="${UserName }"/>
+	<input style="display:none" name="firstusernumber" value="${UserNumber }"/>
+	<input style="display:none" name="secondusername" value="${BlogUserName }"/>
+	<input style="display:none" name="secondusernumber" value="${BlogUserNumber }"/>
+	<input style="display:none" name="flog" value="0"/>
+	<input style="display:none" name="blogid" value="${BlogId }"/>
+</form>
+
+
+<br>
+<br>
+</div>
 </body>
+<script>
+$().ready(function() {
+	var UserNumber = "${UserNumber }";
+	var BlogUserNumber = "${BlogUserNumber }";
+ 	
+	if(UserNumber==BlogUserNumber){
+		document.getElementById("Input_Comment").style.display="none";		
+		document.getElementById("BComment").style.display="none";
+	} else{
+		document.getElementById("Input_Comment").style.display="";
+		document.getElementById("BComment").style.display="";
+	}
+});
+function comment(id){	
+	document.getElementById("Id"+id).style.display="";
+	document.getElementById("B"+id).style.display="";
+	var sum = "${sum}";
+	for(var i=1;i<=sum;i++){
+		if(i!=id){			
+			document.getElementById("Id"+i).style.display="none";
+			document.getElementById("B"+i).style.display="none";
+		}
+	}
+}
+</script>
 </html>

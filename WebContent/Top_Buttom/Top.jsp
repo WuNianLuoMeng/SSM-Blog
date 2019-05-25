@@ -25,7 +25,7 @@
 					&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp
 					&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp
 					&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp
-					&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp
+
 					<a href="${pageContext.request.contextPath }/Login" id="href1">登录</a>
 					<a href="${pageContext.request.contextPath }/Detail/${UserNumber }" id="href2">${UserName }</a>
 					<a href="${pageContext.request.contextPath }/UserBlog/${UserNumber }?UserName=${UserName }&page=1" id="href3">博客主页</a>

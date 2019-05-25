@@ -1,5 +1,6 @@
 package controller.Blog;
 
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import pojo.TbBlogartical;
 import pojo.TbBloguser;
+import pojo.TbComment;
 import service.LookBlog;
 import service.UserInfo;
 /**
@@ -31,7 +33,11 @@ public class LookBlogController {
 	private UserInfo userinfo;
 	@RequestMapping("/LookBlog")
 	public String lookblog(Integer BlogId, String UserNumber,String UserName, ModelMap model) throws Exception {
-		if (!ReadBLogNumber.containsKey(BlogId)) {  //不包含BlogID  //采用单例模式来实现只会往ReadBlogNumber中添加一次key=Blog的情况
+		
+		if("".equals(UserNumber)) {
+				return "redirect:/Login";
+		}			
+		else if (!ReadBLogNumber.containsKey(BlogId)) {  //不包含BlogID  //采用单例模式来实现只会往ReadBlogNumber中添加一次key=Blog的情况
 			synchronized(LookBlogController.class) {
 				if(!ReadBLogNumber.containsKey(BlogId)) {
 					TbBlogartical blog = service.GetBlog(BlogId);					
@@ -50,6 +56,14 @@ public class LookBlogController {
 					model.put("Content", blog.getBlogcontent());
 					model.put("BlogDate",blog.getBlogdata());
 					model.put("BlogTraffic",ReadBLogNumber.get(BlogId));
+					model.put("BlogId",BlogId);
+					/*获取评论列表*/
+					List<TbComment> list = service.GetBlogComment(BlogId);
+//					for(TbComment x:list) {
+//						System.out.println(x.getCommentContent());
+//					}
+					model.put("sum",list.size());
+					model.put("Date",list);
 					return "Blog/LookBlog";
 				} else {
 					ReadBLogNumber.put(BlogId,ReadBLogNumber.get(BlogId)+1);
@@ -67,6 +81,14 @@ public class LookBlogController {
 					model.put("Title", blog.getBlogtitle());
 					model.put("Content", blog.getBlogcontent());
 					model.put("BlogTraffic",ReadBLogNumber.get(BlogId));
+					model.put("BlogId",BlogId);
+					/*获取评论列表*/
+					List<TbComment> list = service.GetBlogComment(BlogId);
+					model.put("sum",list.size());
+					model.put("Date",list);
+//					for(TbComment x:list) {
+//						System.out.println(x.getCommentContent());
+//					}
 					return "Blog/LookBlog";
 				}
 			}			
@@ -86,6 +108,14 @@ public class LookBlogController {
 			model.put("Title", blog.getBlogtitle());
 			model.put("Content", blog.getBlogcontent());
 			model.put("BlogTraffic",ReadBLogNumber.get(BlogId));
+			model.put("BlogId",BlogId);
+			/*获取评论列表*/
+			List<TbComment> list = service.GetBlogComment(BlogId);
+//			for(TbComment x:list) {
+//				System.out.println(x.getCommentContent());
+//			}
+			model.put("sum",list.size());
+			model.put("Date",list);
 			return "Blog/LookBlog";
 		}
 	}

@@ -1,10 +1,10 @@
 package service;
 
 
-import com.github.pagehelper.PageInfo;
 
-import pojo.TbBlogartical;
 
+
+import pojo.MyTbBlogartical;
 public interface BlogInfo {
-	PageInfo<TbBlogartical> GetBlogInfo(String UserNumber,int page) throws Exception;
+	MyTbBlogartical GetBlogInfo(String UserNumber,int page) throws Exception;
 }

@@ -34,4 +34,5 @@ public interface TbBlogarticalMapper {
 
     int updateByPrimaryKey(TbBlogartical record);
     void MyUpdate(@Param("sum") Integer blogtraffic,@Param("id")Integer blogid);
+    List<TbBlogartical> MySelect();
 }

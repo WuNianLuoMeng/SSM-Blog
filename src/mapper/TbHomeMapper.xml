@@ -1,22 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="mapper.TbBlogarticalMapper">
-
-
-  <update id="MyUpdate">
-  	UPDATE tb_blogartical SET BlogTraffic=#{sum} WHERE BlogId=#{id}
-  </update>
-  <select id="MySelect" resultMap="BaseResultMap">
-  	SELECT * FROM tb_blogartical ORDER BY BlogTraffic DESC LIMIT 10  	
-  </select>
-  <resultMap id="BaseResultMap" type="pojo.TbBlogartical">
+<mapper namespace="mapper.TbHomeMapper">
+  <resultMap id="BaseResultMap" type="pojo.TbHome">
     <id column="BlogId" jdbcType="INTEGER" property="blogid" />
     <result column="BlogUserNumber" jdbcType="VARCHAR" property="blogusernumber" />
     <result column="BlogTitle" jdbcType="VARCHAR" property="blogtitle" />
     <result column="BlogData" jdbcType="DATE" property="blogdata" />
     <result column="BlogTraffic" jdbcType="INTEGER" property="blogtraffic" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="pojo.TbBlogartical">
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="pojo.TbHome">
     <result column="BlogContent" jdbcType="LONGVARCHAR" property="blogcontent" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -83,7 +75,7 @@
   <sql id="Blob_Column_List">
     BlogContent
   </sql>
-  <select id="selectByExampleWithBLOBs" parameterType="pojo.TbBlogarticalExample" resultMap="ResultMapWithBLOBs">
+  <select id="selectByExampleWithBLOBs" parameterType="pojo.TbHomeExample" resultMap="ResultMapWithBLOBs">
     select
     <if test="distinct">
       distinct
@@ -91,7 +83,7 @@
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
-    from tb_blogartical
+    from tb_home
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -99,13 +91,13 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExample" parameterType="pojo.TbBlogarticalExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="pojo.TbHomeExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from tb_blogartical
+    from tb_home
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -118,29 +110,29 @@
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
-    from tb_blogartical
+    from tb_home
     where BlogId = #{blogid,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from tb_blogartical
+    delete from tb_home
     where BlogId = #{blogid,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="pojo.TbBlogarticalExample">
-    delete from tb_blogartical
+  <delete id="deleteByExample" parameterType="pojo.TbHomeExample">
+    delete from tb_home
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="pojo.TbBlogartical" useGeneratedKeys="true"  keyProperty="blogid">
-    insert into tb_blogartical (BlogId, BlogUserNumber, BlogTitle, 
+  <insert id="insert" parameterType="pojo.TbHome">
+    insert into tb_home (BlogId, BlogUserNumber, BlogTitle, 
       BlogData, BlogTraffic, BlogContent
       )
     values (#{blogid,jdbcType=INTEGER}, #{blogusernumber,jdbcType=VARCHAR}, #{blogtitle,jdbcType=VARCHAR}, 
       #{blogdata,jdbcType=DATE}, #{blogtraffic,jdbcType=INTEGER}, #{blogcontent,jdbcType=LONGVARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="pojo.TbBlogartical" useGeneratedKeys="true"  keyProperty="blogid">
-    insert into tb_blogartical
+  <insert id="insertSelective" parameterType="pojo.TbHome">
+    insert into tb_home
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="blogid != null">
         BlogId,
@@ -182,14 +174,14 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="pojo.TbBlogarticalExample" resultType="java.lang.Long">
-    select count(*) from tb_blogartical
+  <select id="countByExample" parameterType="pojo.TbHomeExample" resultType="java.lang.Long">
+    select count(*) from tb_home
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update tb_blogartical
+    update tb_home
     <set>
       <if test="record.blogid != null">
         BlogId = #{record.blogid,jdbcType=INTEGER},
@@ -215,7 +207,7 @@
     </if>
   </update>
   <update id="updateByExampleWithBLOBs" parameterType="map">
-    update tb_blogartical
+    update tb_home
     set BlogId = #{record.blogid,jdbcType=INTEGER},
       BlogUserNumber = #{record.blogusernumber,jdbcType=VARCHAR},
       BlogTitle = #{record.blogtitle,jdbcType=VARCHAR},
@@ -227,7 +219,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update tb_blogartical
+    update tb_home
     set BlogId = #{record.blogid,jdbcType=INTEGER},
       BlogUserNumber = #{record.blogusernumber,jdbcType=VARCHAR},
       BlogTitle = #{record.blogtitle,jdbcType=VARCHAR},
@@ -237,8 +229,8 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="pojo.TbBlogartical">
-    update tb_blogartical
+  <update id="updateByPrimaryKeySelective" parameterType="pojo.TbHome">
+    update tb_home
     <set>
       <if test="blogusernumber != null">
         BlogUserNumber = #{blogusernumber,jdbcType=VARCHAR},
@@ -258,8 +250,8 @@
     </set>
     where BlogId = #{blogid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="pojo.TbBlogartical">
-    update tb_blogartical
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="pojo.TbHome">
+    update tb_home
     set BlogUserNumber = #{blogusernumber,jdbcType=VARCHAR},
       BlogTitle = #{blogtitle,jdbcType=VARCHAR},
       BlogData = #{blogdata,jdbcType=DATE},
@@ -267,8 +259,8 @@
       BlogContent = #{blogcontent,jdbcType=LONGVARCHAR}
     where BlogId = #{blogid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="pojo.TbBlogartical">
-    update tb_blogartical
+  <update id="updateByPrimaryKey" parameterType="pojo.TbHome">
+    update tb_home
     set BlogUserNumber = #{blogusernumber,jdbcType=VARCHAR},
       BlogTitle = #{blogtitle,jdbcType=VARCHAR},
       BlogData = #{blogdata,jdbcType=DATE},

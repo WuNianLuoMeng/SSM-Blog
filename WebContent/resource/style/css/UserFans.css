@@ -1,0 +1,59 @@
+@charset "UTF-8";
+@charset "UTF-8";
+article, aside, audio, body, canvas, caption, details, div, figure,
+	footer, header, hgroup, html, iframe, img, mark, menu, nav, object,
+	section, span, summary, table, tbody, td, tfoot, thead, tr, video {
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
+
+.content .bar[data-v-0c56b7f6] {
+	overflow: hidden;
+	height: 90px;
+	line-height: 90px;
+
+}
+
+.content .bar .title[data-v-0c56b7f6] {
+	font-size: 20px;
+	color: #3d3d3d;
+	float: left;
+}
+
+.content .bar .num[data-v-0c56b7f6] {
+	font-size: 14px;
+	color: #4d4d4d;
+	float: right;
+}
+
+.content .watch_list .item_cont[data-v-0c56b7f6] {
+	height: 82px;
+	line-height: 82px;
+	overflow: hidden;
+
+}
+
+li {
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+ 	cursor: pointer;
+	color: black;
+}
+
+.content .watch_list .item_cont .watch_btn[data-v-0c56b7f6] {
+	float: right;
+	border: 1px solid #999;
+	border-radius: 4px;
+	font-size: 14px;
+	color: #999;
+	width: 90px;
+	height: 32px;
+	margin-top: 25px;
+	background: #fff;
+	text-align: center;
+	line-height: 32px;
+}

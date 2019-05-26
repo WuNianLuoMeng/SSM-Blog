@@ -8,11 +8,20 @@ import org.springframework.stereotype.Service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
+
 import mapper.TbBlogarticalMapper;
+import mapper.TbFansMapper;
+import pojo.MyTbBlogartical;
 import pojo.TbBlogartical;
 import pojo.TbBlogarticalExample;
+
 import pojo.TbBlogarticalExample.Criteria;
+import pojo.TbFans;
+import pojo.TbFansExample;
+
 import service.BlogInfo;
+import service.GetFansNum;
+import service.GetFollowNum;
 /**
  * 
 * <p>Title: BlogInfoImpl.java<／p>
@@ -24,11 +33,15 @@ import service.BlogInfo;
 public class BlogInfoImpl implements BlogInfo {
 	@Autowired
 	private TbBlogarticalMapper mapper;
-
+	@Autowired
+	private GetFansNum FanService;
+	@Autowired
+	private GetFollowNum FollowService;
 	@Override
-	public PageInfo<TbBlogartical> GetBlogInfo(String UserNumber,int page) throws Exception {
+	public MyTbBlogartical GetBlogInfo(String UserNumber,int page) throws Exception {
 		// TODO Auto-generated method stub
-		
+		MyTbBlogartical ans = new MyTbBlogartical();
+		/*博客信息的查询*/
 		TbBlogarticalExample example=new TbBlogarticalExample();
 		Criteria criteria =example.createCriteria();
 		/*创建查询条件*/		
@@ -36,9 +49,15 @@ public class BlogInfoImpl implements BlogInfo {
 		//分页处理
 		PageHelper.startPage(page, 10);
 		List<TbBlogartical> list = mapper.selectByExample(example);
-		PageInfo<TbBlogartical> pageinfo = new PageInfo<TbBlogartical>(list);
-//		System.out.println(pageinfo.getTotal());
-		return pageinfo;
+		ans.setBloglist(new PageInfo<TbBlogartical>(list));
+		
+		/*粉丝和关注信息查询*/
+		
+		/*获取关注数*/
+		ans.setFollownum(FanService.getfansnum(UserNumber));
+		/*获取粉丝数*/			
+		ans.setFansnum(FollowService.getfollow(UserNumber));
+		return ans;
 	}
 
 }

@@ -23,6 +23,7 @@ public class CommentController {
 		Comment.setSecondname(secondusername);
 		Comment.setSecondnumber(secondusernumber);
 		Comment.setFlog(flog);
+		@SuppressWarnings("unused")
 		int total = service.addcomment(Comment);
 		model.put("BlogId",blogid);		
 		model.put("UserNumber",firstusernumber);

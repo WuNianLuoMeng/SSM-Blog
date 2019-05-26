@@ -11,7 +11,7 @@ import com.github.pagehelper.PageInfo;
 import mapper.TbBlogarticalMapper;
 import pojo.TbBlogartical;
 import pojo.TbBlogarticalExample;
-import pojo.TbBlogarticalExample.Criteria;
+
 import service.AllBlog;
 @Service
 public class AllBlogImpl implements AllBlog {

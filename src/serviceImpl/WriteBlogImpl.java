@@ -13,6 +13,7 @@ public class WriteBlogImpl implements WriteBlog{
 	@Override
 	public int InsertBlog(TbBlogartical Artical) throws Exception {
 		int total=mapper.insert(Artical);
+//		System.out.println("*****"+Artical.getBlogid());
 		return total;
 	}
 

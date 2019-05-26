@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.TbFansMapper">
+  <resultMap id="BaseResultMap" type="pojo.TbFans">
+    <id column="RecordId" jdbcType="INTEGER" property="recordid" />
+    <result column="Front_UserNumber" jdbcType="VARCHAR" property="frontUsernumber" />
+    <result column="Front_UserName" jdbcType="VARCHAR" property="frontUsername" />
+    <result column="Last_UserNumber" jdbcType="VARCHAR" property="lastUsernumber" />
+    <result column="Last_UserName" jdbcType="VARCHAR" property="lastUsername" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    RecordId, Front_UserNumber, Front_UserName, Last_UserNumber, Last_UserName
+  </sql>
+  <select id="selectByExample" parameterType="pojo.TbFansExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_fans
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_fans
+    where RecordId = #{recordid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_fans
+    where RecordId = #{recordid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="pojo.TbFansExample">
+    delete from tb_fans
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="pojo.TbFans">
+    insert into tb_fans (RecordId, Front_UserNumber, Front_UserName, 
+      Last_UserNumber, Last_UserName)
+    values (#{recordid,jdbcType=INTEGER}, #{frontUsernumber,jdbcType=VARCHAR}, #{frontUsername,jdbcType=VARCHAR}, 
+      #{lastUsernumber,jdbcType=VARCHAR}, #{lastUsername,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="pojo.TbFans">
+    insert into tb_fans
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="recordid != null">
+        RecordId,
+      </if>
+      <if test="frontUsernumber != null">
+        Front_UserNumber,
+      </if>
+      <if test="frontUsername != null">
+        Front_UserName,
+      </if>
+      <if test="lastUsernumber != null">
+        Last_UserNumber,
+      </if>
+      <if test="lastUsername != null">
+        Last_UserName,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="recordid != null">
+        #{recordid,jdbcType=INTEGER},
+      </if>
+      <if test="frontUsernumber != null">
+        #{frontUsernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="frontUsername != null">
+        #{frontUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUsernumber != null">
+        #{lastUsernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUsername != null">
+        #{lastUsername,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="pojo.TbFansExample" resultType="java.lang.Long">
+    select count(*) from tb_fans
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tb_fans
+    <set>
+      <if test="record.recordid != null">
+        RecordId = #{record.recordid,jdbcType=INTEGER},
+      </if>
+      <if test="record.frontUsernumber != null">
+        Front_UserNumber = #{record.frontUsernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.frontUsername != null">
+        Front_UserName = #{record.frontUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastUsernumber != null">
+        Last_UserNumber = #{record.lastUsernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastUsername != null">
+        Last_UserName = #{record.lastUsername,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tb_fans
+    set RecordId = #{record.recordid,jdbcType=INTEGER},
+      Front_UserNumber = #{record.frontUsernumber,jdbcType=VARCHAR},
+      Front_UserName = #{record.frontUsername,jdbcType=VARCHAR},
+      Last_UserNumber = #{record.lastUsernumber,jdbcType=VARCHAR},
+      Last_UserName = #{record.lastUsername,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="pojo.TbFans">
+    update tb_fans
+    <set>
+      <if test="frontUsernumber != null">
+        Front_UserNumber = #{frontUsernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="frontUsername != null">
+        Front_UserName = #{frontUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUsernumber != null">
+        Last_UserNumber = #{lastUsernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUsername != null">
+        Last_UserName = #{lastUsername,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where RecordId = #{recordid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="pojo.TbFans">
+    update tb_fans
+    set Front_UserNumber = #{frontUsernumber,jdbcType=VARCHAR},
+      Front_UserName = #{frontUsername,jdbcType=VARCHAR},
+      Last_UserNumber = #{lastUsernumber,jdbcType=VARCHAR},
+      Last_UserName = #{lastUsername,jdbcType=VARCHAR}
+    where RecordId = #{recordid,jdbcType=INTEGER}
+  </update>
+</mapper>

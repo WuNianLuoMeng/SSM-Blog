@@ -11,7 +11,6 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
-import org.apache.shiro.util.ThreadContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,14 +18,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class ConfirmLoginController {
 
-	// Ïß³Ì³Ø
+	// ï¿½ß³Ì³ï¿½
 	public static ExecutorService exec = Executors.newCachedThreadPool();
 
 	@RequestMapping("/login")
 	public String LoginConfirm(String number, String password, ModelMap model)
 			throws InterruptedException, ExecutionException, Exception {
 		String changepassword=URLEncoder.encode(password, "utf-8");	
-		// ²ÉÓÃÏß³Ì³ØÀ´¹ÜÀí¶à¸öÓÃ»§Í¬Ê±µÇÂ¼Ê±µÄÇé¾°
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ß³Ì³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Í¬Ê±ï¿½ï¿½Â¼Ê±ï¿½ï¿½ï¿½é¾°
 		Future<String> future = exec.submit(new Callable<String>() {
 			@Override
 			public String call() throws Exception {
@@ -38,7 +37,7 @@ public class ConfirmLoginController {
 					try {
 						currentUser.login(token);
 					} catch (AuthenticationException ae) {
-						System.out.println("µÇÂ½Ê§°Ü£¡£¡£¡");
+						System.out.println("ï¿½ï¿½Â½Ê§ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½");
 						return "redirect:/Login";
 					}
 				}

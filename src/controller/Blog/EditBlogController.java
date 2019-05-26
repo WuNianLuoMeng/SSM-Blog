@@ -1,5 +1,6 @@
 package controller.Blog;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -18,8 +19,9 @@ import service.EditBlog;
 public class EditBlogController {
 	@Autowired
 	private EditBlog service;
+
 	@RequestMapping("/EditBLog")
-	public String EditBlog(Integer BlogId,String UserName,ModelMap model) throws Exception{
+	public String EditBlog(String UserNumber,String BlogUserName,Integer BlogId,String UserName,ModelMap model) throws Exception{
 		//System.out.println(BlogId);
 		
 		TbBlogartical blog = service.GetBlogInfo(BlogId);
@@ -31,6 +33,9 @@ public class EditBlogController {
 		model.put("UserNumber",blog.getBlogusernumber());
 		model.put("Blogtraffic",blog.getBlogtraffic());
 		model.put("UserName",UserName);
+		model.put("BlogUserName",BlogUserName);
+
+		
 		return "Blog/EditBlog";
 	}
 }

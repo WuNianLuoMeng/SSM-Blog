@@ -14,12 +14,12 @@
 				<div id="blog-news">
 					昵称： <a href="">${BlogUserName }</a> 
 					<br> 
-					粉丝： <a href="">12</a> 
+					关注： <a href="${pageContext.request.contextPath }/follow/${UserNumber }?UserName=${UserName }&page=1">${FollowNum }</a> 
 					<br>
-					关注： <a href="">10</a>
+					粉丝： <a href="${pageContext.request.contextPath }/fans/${UserNumber }?UserName=${UserName }&page=1">${FansNum }</a>
 					<br>
 					
-					<a href="">+加关注</a>
+					<a id="follow" href="${pageContext.request.contextPath }/AddFollow/?first=${UserNumber}&first_name=${UserName }&second=${BlogUserNumber }&second_name=${BlogUserName }">+加关注</a>
 				</div>
 			</div>
 			<!-- 第二块 搜索功能 -->
@@ -87,4 +87,17 @@
 		</div>
 	</div>
 </body>
+<script>
+$().ready(function() {
+	var usernumber = "${UserNumber }";
+	var blogusernumber = "${BlogUserNumber }";
+	if(blogusernumber==null||blogusernumber==""){
+		document.getElementById("follow").style.display="none";
+	} else if(usernumber!=blogusernumber){
+		document.getElementById("follow").style.display="";
+	} else{
+		document.getElementById("follow").style.display="none";
+	}
+});
+</script>
 </html>

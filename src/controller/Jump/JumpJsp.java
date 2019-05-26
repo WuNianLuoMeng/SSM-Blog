@@ -12,22 +12,24 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.github.pagehelper.PageInfo;
 
 
 import mapper.TbBloguserMapper;
+import pojo.MyTbBlogartical;
 import pojo.TbBlogartical;
 import pojo.TbBloguser;
+import pojo.TbHome;
 import service.BlogInfo;
+import service.home;
 
 /**
  * 
  * <p>
- * Title: JumpJsp.java<��p>
+ * Title: JumpJsp.java<p>
  * <p>
- * Description: Controller <��p>
+ * Description: Controller <p>
  * <p>
- * Copyright: Copyright (c) 2007<��p>
+ * Copyright: Copyright (c) 2007<p>
  * 
  * @author Ma
  */
@@ -37,27 +39,41 @@ public class JumpJsp {
 	TbBloguserMapper mapper;
 	@Autowired
 	BlogInfo BlogService;
+	@Autowired
+	home mainservice;
 	@RequestMapping("/Home")
-	public String JumpHome(String UserNumber, ModelMap model) {
+	public String JumpHome(String UserNumber, ModelMap model) throws Exception {
 		/* 跳转到home界面 */
+		List<TbHome> list=mainservice.GetBlogList();
+		model.put("Data",list);
 		TbBloguser user = mapper.selectByPrimaryKey(UserNumber);
 		model.put("UserName", user.getBlogusername());
-		model.put("UserNumber", UserNumber);
-		
-		
-		
-		
+		model.put("UserNumber", UserNumber);					
 		return "forward:/home.jsp";
 	}
 
+	@RequestMapping("/home")
+	public String JumpLogin(ModelMap model) throws Exception {
+		
+		List<TbHome> list=mainservice.GetBlogList();
+		
+//		for(TbHome x:list) {
+//			System.out.println(x.getBlogtitle());
+//		}
+		model.put("Data",list);
+		return "forward:/home.jsp";
+	}
 	@RequestMapping("/")
-	public String JumpLogin() {
-		return "redirect:/Login";
+	public String Jumphome(ModelMap model) throws Exception {
+		
+		return "redirect:/home";
 	}
 	@RequestMapping("/UserBlog/{UserNumber}")
 	public String JumpUserBlog(@PathVariable String UserNumber,String UserName,ModelMap model,@RequestParam(value="page",defaultValue = "1") int page) throws Exception{
-		PageInfo<TbBlogartical> result = BlogService.GetBlogInfo(UserNumber,page);
-		List<TbBlogartical> list = result.getList();
+		
+		
+		MyTbBlogartical result = BlogService.GetBlogInfo(UserNumber,page);
+		List<TbBlogartical> list = result.getBloglist().getList();
 		model.put("UserNumber",UserNumber);
 		model.put("BlogUserName",UserName);
 		model.put("UserName",UserName);
@@ -66,12 +82,14 @@ public class JumpJsp {
 		} else {
 			model.put("ProPage",page);
 		}
-		if((page-1)*10+list.size()==result.getTotal()){
+		if((page-1)*10+list.size()==result.getBloglist().getTotal()){
 			model.put("NextPage",page);
 		} else {
 			model.put("NextPage",page+1);
 		}
 		model.put("Data",list);
+		model.put("FansNum",result.getFansnum());
+		model.put("FollowNum",result.getFollownum());
 		return "User/UserBlog";
 	}
 	

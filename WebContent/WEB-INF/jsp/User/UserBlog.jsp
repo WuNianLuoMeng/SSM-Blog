@@ -21,13 +21,13 @@
 		<hr/>
 		<c:forEach items="${Data}" var="item">
 			<div style="padding-left:20px;">
-				<a href="${pageContext.request.contextPath }/LookBlog?BlogId=${item.blogid }&UserName=${UserName }&UserNumber=${UserNumber }">${item.blogtitle}</a>
+				<a href="${pageContext.request.contextPath }/LookBlog?BlogId=${item.blogid }&UserName=${UserName }&UserNumber=${UserNumber }&FollowNum=${FollowNum }&FansNum=${FansNum }">${item.blogtitle}</a>
 				<br>
 				<br>				
 				<font style="font-size:15px;color:rgb(61,68,76)">Time:${item.blogdata }</font>				
 				<font style="font-size:15px;color:rgb(61,68,76); padding-left:20px;">阅读量:${item.blogtraffic }</font>
-				<a href="${pageContext.request.contextPath }/EditBLog?BlogId=${item.blogid }&UserName=${UserName }" style="padding-left: 10px; color:rgb(61,68,76);">编辑</a>
-				<a href="${pageContext.request.contextPath }/DeleteBlog?BlogId=${item.blogid }&UserNumber=${UserNumber }&UserName=${UserName }" style="padding-left: 5px; color:rgb(61,68,76);">删除</a>				
+				<a href="${pageContext.request.contextPath }/EditBLog?BlogId=${item.blogid }&UserName=${UserName }&BlogUserName=${BlogUserName }" style="padding-left: 10px; color:rgb(61,68,76);">编辑</a>
+				<a href="${pageContext.request.contextPath }/DeleteBlog?BlogId=${item.blogid }&UserNumber=${UserNumber }&UserName=${UserName }&BlogUserName=${BlogUserName }" style="padding-left: 5px; color:rgb(61,68,76);">删除</a>				
 			</div>		
 			<hr style="color:rgb(210,213,214)"/>
 			<br>           

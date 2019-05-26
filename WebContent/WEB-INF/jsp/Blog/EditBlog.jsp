@@ -18,7 +18,7 @@
 <!-- 引入头部jsp -->
 <%@ include file="../../../Top_Buttom/Top.jsp" %>
 <div class="Main">	
-		<form action="${pageContext.request.contextPath }/SaveBlog?UserNumber=${UserNumber }&UserName=${UserName }&BlogId=${BlogId }" method="post">
+		<form action="${pageContext.request.contextPath }/SaveBlog?UserNumber=${UserNumber }&UserName=${UserName }&BlogUserName=${BlogUserName }&BlogId=${BlogId }" method="post">
 		<div style="padding-top: 80px; padding-left: 300px">			
 				<div class="Biaoti">
 					<input type="text" name="title" maxlength="100" class="Input_Biaoti"

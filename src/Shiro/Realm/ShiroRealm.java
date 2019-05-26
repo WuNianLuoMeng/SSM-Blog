@@ -4,8 +4,7 @@ package Shiro.Realm;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.apache.log4j.spi.LoggerFactory;
-import org.apache.shiro.SecurityUtils;
+
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -14,7 +13,7 @@ import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
-import org.apache.shiro.mgt.RealmSecurityManager;
+
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
@@ -25,12 +24,12 @@ import mapper.TbBloguserMapper;
 import pojo.TbBloguser;
 /**
  * 
-* <p>Title: ShiroRealm.java<£¯p>
-* <p>Description: ÓÃ»§µÇÂ¼ÑéÖ¤ <£¯p>
-* <p>Copyright: Copyright (c) 2007<£¯p>
-* <p>Company: LTGames<£¯p>
+* <p>Title: ShiroRealm.java<ï¿½ï¿½p>
+* <p>Description: ï¿½Ã»ï¿½ï¿½ï¿½Â¼ï¿½ï¿½Ö¤ <ï¿½ï¿½p>
+* <p>Copyright: Copyright (c) 2007<ï¿½ï¿½p>
+* <p>Company: LTGames<ï¿½ï¿½p>
 * @author Ma
-* @date 2019Äê5ÔÂ11ÈÕ
+* @date 2019ï¿½ï¿½5ï¿½ï¿½11ï¿½ï¿½
  */
 @Service
 public class ShiroRealm extends AuthorizingRealm {
@@ -39,25 +38,25 @@ public class ShiroRealm extends AuthorizingRealm {
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 //		System.out.println("1");
-		//1,ÀàÐÍµÄ×ª»»
+		//1,ï¿½ï¿½ï¿½Íµï¿½×ªï¿½ï¿½
 		UsernamePasswordToken Token = (UsernamePasswordToken) token;
-		//2£¬´ÓÕâ¸öÖÐ»ñÈ¡number
+		//2ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð»ï¿½È¡number
 		String number = Token.getUsername();
 		//System.out.println(Token.getPassword());
-		//3£¬ÒÀ¾Ýnumber´ÓÊý¾Ý¿âÖÐ²éÑ¯Êý¾Ý
+		//3ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½numberï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½Ð²ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½
 		
 		TbBloguser result= mapper.selectByPrimaryKey(number);
 		if(result==null) {
-			throw new UnknownAccountException("ÓÃ»§Ãû²»´æÔÚ");
+			throw new UnknownAccountException("ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		}
-		//¾²Ì¬Ä£ÄâÌí¼ÓÓÃ»§
-		//1£¬ÈÏÖ¤µÄÊµÌåÐÅÏ¢
+		//ï¿½ï¿½Ì¬Ä£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½
+		//1ï¿½ï¿½ï¿½ï¿½Ö¤ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½Ï¢
 		Object principal = number;
-		//2£¬ÃÜÂë
+		//2ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		String hashedCredentials = result.getBloguserpassword();
-		//3,µ±Ç°RealmµÄÃû×Ö
+		//3,ï¿½ï¿½Ç°Realmï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		String realmName = getName();
-		//ÉèÖÃÑÎÖµ
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
 		ByteSource credentialsSalt = ByteSource.Util.bytes(number);
 		SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(principal, hashedCredentials, credentialsSalt, realmName);
 		//System.out.println(info.getCredentials());

@@ -19,7 +19,7 @@
 		<hr/>
 		<c:forEach items="${Data}" var="item">
 			<div style="padding-left:20px;">
-				<a href="${pageContext.request.contextPath }/LookBlog?BlogId=${item.blogid }&UserName=${UserName }&UserNumber=${UserNumber }">${item.blogtitle}</a>
+				<a href="${pageContext.request.contextPath }/LookBlog?BlogId=${item.blogid }&UserName=${UserName }&UserNumber=${UserNumber }&FollowNum=${FollowNum }&FansNum=${FansNum }">${item.blogtitle}</a>
 				<br>
 				<br>				
 				<font style="font-size:15px;color:rgb(61,68,76)">Time:${item.blogdata }</font>				

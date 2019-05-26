@@ -1,7 +1,6 @@
 package controller.logout;
 
-import org.apache.shiro.subject.Subject;
-import org.apache.shiro.util.ThreadContext;
+
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +10,7 @@ public class LogoutController {
 	@RequestMapping("/Logout")
 	public String Logout() {
 
-		// ThreadContext.remove(ThreadContext.SUBJECT_KEY);//ÒÆ³ýÏß³ÌÖÐµÄsubject
+		// ThreadContext.remove(ThreadContext.SUBJECT_KEY);//ï¿½Æ³ï¿½ï¿½ß³ï¿½ï¿½Ðµï¿½subject
 
 //		ThreadContext.remove(ThreadContext.SUBJECT_KEY);
 //		ThreadContext.getSecurityManager().logout(ThreadContext.getSubject());

@@ -31,6 +31,8 @@ public class RemoveConcernsContrller {
 				jediscluster.del(first);
 			}
 		}
+		model.put("BlogUserName",UserName);
+		model.put("UserNumber",first);
 		model.put("UserName", UserName);
 		model.put("page", 1);		
 		return "redirect:/follow/" + first;

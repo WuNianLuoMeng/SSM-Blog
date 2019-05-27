@@ -54,9 +54,9 @@ public class BlogInfoImpl implements BlogInfo {
 		/*粉丝和关注信息查询*/
 		
 		/*获取关注数*/
-		ans.setFollownum(FanService.getfansnum(UserNumber));
+		ans.setFollownum(FollowService.getfollow(UserNumber));
 		/*获取粉丝数*/			
-		ans.setFansnum(FollowService.getfollow(UserNumber));
+		ans.setFansnum(FanService.getfansnum(UserNumber));
 		return ans;
 	}
 

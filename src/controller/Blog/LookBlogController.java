@@ -64,13 +64,12 @@ public class LookBlogController {
 					//博客主人的number
 					model.put("BlogUserNumber", blog.getBlogusernumber());
 					
-					if(FansNum==-1) {  //当前是没有查询博客用户的粉丝数和关注数
-						
+					if(FansNum==-1) {  //当前是没有查询博客用户的粉丝数和关注数						
 						FansNum = FanService.getfansnum(blog.getBlogusernumber());
 						FollowNum = FollowService.getfollow(blog.getBlogusernumber());						
-					}
-					
-					
+					}	
+					boolean isflow = FollowService.isfollow(UserNumber, blog.getBlogusernumber());
+					model.put("isfollow",isflow==true?1:0);
 					//当前用户的number
 					model.put("UserNumber",UserNumber);
 					model.put("Title", blog.getBlogtitle());
@@ -106,7 +105,10 @@ public class LookBlogController {
 						FansNum = FanService.getfansnum(blog.getBlogusernumber());
 						FollowNum = FollowService.getfollow(blog.getBlogusernumber());						
 					}
-					
+					boolean isflow = FollowService.isfollow(UserNumber, blog.getBlogusernumber());
+					model.put("isfollow",isflow==true?1:0);
+					model.put("FollowNum",FollowNum);
+					model.put("FansNum",FansNum);
 					//当前用户的number
 					model.put("UserNumber",UserNumber);
 					model.put("Title", blog.getBlogtitle());
@@ -136,8 +138,13 @@ public class LookBlogController {
 			if(FansNum==-1) {  //当前是没有查询博客用户的粉丝数和关注数
 				
 				FansNum = FanService.getfansnum(blog.getBlogusernumber());
-				FollowNum = FollowService.getfollow(blog.getBlogusernumber());						
+				FollowNum = FollowService.getfollow(blog.getBlogusernumber());
+				
 			}
+			boolean isflow = FollowService.isfollow(UserNumber, blog.getBlogusernumber());
+			model.put("isfollow",isflow==true?1:0);
+			model.put("FollowNum",FollowNum);
+			model.put("FansNum",FansNum);
 			//当前用户的number
 			model.put("UserNumber",UserNumber);
 			model.put("BlogDate",blog.getBlogdata());

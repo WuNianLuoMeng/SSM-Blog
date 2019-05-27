@@ -14,12 +14,13 @@
 				<div id="blog-news">
 					昵称： <a href="">${BlogUserName }</a> 
 					<br> 
-					关注： <a href="${pageContext.request.contextPath }/follow/${UserNumber }?UserName=${UserName }&page=1">${FollowNum }</a> 
+					关注： <a href="${pageContext.request.contextPath }/follow/${BlogUserNumber }?BlogUserName=${BlogUserName }&UserNumber=${UserNumber }&UserName=${UserName }&page=1">${FollowNum }</a> 
 					<br>
-					粉丝： <a href="${pageContext.request.contextPath }/fans/${UserNumber }?UserName=${UserName }&page=1">${FansNum }</a>
+					粉丝： <a href="${pageContext.request.contextPath }/fans/${BlogUserNumber }?BlogUserName=${BlogUserName }&UserNumber=${UserNumber }&UserName=${UserName }&page=1">${FansNum }</a>
 					<br>
 					
-					<a id="follow" href="${pageContext.request.contextPath }/AddFollow/?first=${UserNumber}&first_name=${UserName }&second=${BlogUserNumber }&second_name=${BlogUserName }">+加关注</a>
+					<a id="follow1" style="display:none" href="${pageContext.request.contextPath }/AddFollow/?first=${UserNumber}&first_name=${UserName }&second=${BlogUserNumber }&second_name=${BlogUserName }&BlogId=${BlogId }">+加关注</a>
+					<font id="follow2" style="display:none">已关注</font>
 				</div>
 			</div>
 			<!-- 第二块 搜索功能 -->
@@ -89,14 +90,32 @@
 </body>
 <script>
 $().ready(function() {
-	var usernumber = "${UserNumber }";
-	var blogusernumber = "${BlogUserNumber }";
-	if(blogusernumber==null||blogusernumber==""){
-		document.getElementById("follow").style.display="none";
-	} else if(usernumber!=blogusernumber){
-		document.getElementById("follow").style.display="";
+	/*加关注显示*/
+	/*已关注显示*/
+	var isfollow = "${isfollow}";
+	if(isfollow==1){
+		var UserNumber="${UserNumber }";
+		var BlogUserNumber="${BlogUserNumber }";
+		if(UserNumber==BlogUserNumber){
+			document.getElementById("follow2").style.display="none";	
+		} else{
+			document.getElementById("follow2").style.display="";
+		}		
+		document.getElementById("follow1").style.display="none";
 	} else{
-		document.getElementById("follow").style.display="none";
+		document.getElementById("follow2").style.display="none";
+		var UserNumber="${UserNumber }";
+		var BlogUserNumber="${BlogUserNumber }";
+		if(UserNumber==BlogUserNumber){
+			document.getElementById("follow1").style.display="none";	
+		} else{
+			document.getElementById("follow1").style.display="";
+		}
+	}
+	/*提示是否关注成功*/
+	var flag = "${flag}";
+	if(flag!=""&&flag!=null){
+		alert("关注成功！");
 	}
 });
 </script>

@@ -11,10 +11,10 @@ import pojo.TbBloguser;
 import service.UserInfo;
 /**
  * 
-* <p>Title: PersonMessage.java<£¯p>
-* <p>Description: ÓÃÓÚ½øÈëµ½¸öÈËÖ÷Ò³ĞÅÏ¢<£¯p>
+* <p>Title: PersonMessage.java<ï¿½ï¿½p>
+* <p>Description: ä¸ªäººåŸºæœ¬ä¿¡æ¯<p>
 * @author Ma
-* @date 2019Äê5ÔÂ13ÈÕ
+* @date 2019å¹´5æœˆ13æ—¥
  */
 @Controller
 public class PersonMessage {
@@ -23,13 +23,13 @@ public class PersonMessage {
 	@RequestMapping("/Detail/{UserNumber}")
 	public String personmessage(@PathVariable String UserNumber,ModelMap model) throws Exception {
 		
-		//¸ù¾İÓÃ»§µÄusernumberÀ´²éÑ¯ÓÃ»§ĞÅÏ¢		
+		//è·å–ç”¨æˆ·ä¿¡æ¯		
 		TbBloguser User = service.GetUserInfo(UserNumber);
 		
-		//½«ĞÅÏ¢Ìí¼Óµ½modelÖĞ
 		model.put("UserName", User.getBlogusername());
 		model.put("UserNumber", User.getBlogusernumber());
-		
+		model.put("BlogUserNumber",User.getBlogusernumber());
+		model.put("BlogUserName",User.getBlogusername());
 		return "forward:/WEB-INF/jsp/User/UserInfo.jsp";
 	}
 	

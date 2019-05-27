@@ -24,7 +24,7 @@
 		<div data-v-357a65ed="" class="view-container">
 			<div data-v-0c56b7f6="" data-v-357a65ed="" class="content view">
 				<div data-v-0c56b7f6="" class="bar" style="padding-left:30px;">					
-					<h3 data-v-0c56b7f6="" style="padding-left:10px;" class="title">我的粉丝</h3>
+					<h3 data-v-0c56b7f6="" style="padding-left:10px;" class="title">${BlogUserName }的粉丝</h3>
 					<span data-v-0c56b7f6="" class="num" style="padding-top:20px;">共 ${Sum } 人</span>
 				</div>
 				<div style="padding-left:40px;">
@@ -34,7 +34,7 @@
 				<c:forEach items="${Data}" var="item">
 					<li data-v-0c56b7f6="" class="item_cont"><a data-v-0c56b7f6=""
 						href="" title="qq_25827845"
-						target="_blank" class="nick">${item.frontUsernumber }</a> 
+						target="_blank" class="nick">${item.frontUsername }</a> 
 					</li>
 					<hr style="color: rgb(210,216,222)"/>
 				</c:forEach>
@@ -45,8 +45,8 @@
 	<br>
 	<br>
 	<div style="padding-left:550px;">
-       	<a href="${pageContext.request.contextPath }/fans/${UserNumber }?UserName=${UserName }&page=${ProPage }" class="previous" style=" background-color: #f1f1f1;color: black;text-decoration: none;display: inline-block;padding: 8px 16px;">&laquo; 上一页</a>
-		<a href="${pageContext.request.contextPath }/fans/${UserNumber }?UserName=${UserName }&page=${NextPage }" class="next" style=" background-color: #f1f1f1;color: black;text-decoration: none;display: inline-block;padding: 8px 16px;">下一页 &raquo;</a>
+       	<a href="${pageContext.request.contextPath }/fans/${BlogUserNumber }?BlogUserName=${BlogUserName }&UserNumber=${UserNumber }&UserName=${UserName }&page=${ProPage }" class="previous" style=" background-color: #f1f1f1;color: black;text-decoration: none;display: inline-block;padding: 8px 16px;">&laquo; 上一页</a>
+		<a href="${pageContext.request.contextPath }/fans/${BlogUserNumber }?BlogUserName=${BlogUserName }&UserNumber=${UserNumber }&UserName=${UserName }&page=${NextPage }" class="next" style=" background-color: #f1f1f1;color: black;text-decoration: none;display: inline-block;padding: 8px 16px;">下一页 &raquo;</a>
     </div>
 </body>
 </html>

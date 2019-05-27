@@ -9,15 +9,16 @@ import mapper.TbFansMapper;
 import pojo.TbFans;
 import pojo.TbFansExample;
 import service.GetFansNum;
+
 @Service
-public class GetFansNumImpl implements GetFansNum{
+public class GetFansNumImpl implements GetFansNum {
 	@Autowired
 	private TbFansMapper fansmapper;
 	public Integer getfansnum(String UserNumber) {
 		TbFansExample example1 = new TbFansExample();
 		pojo.TbFansExample.Criteria criteria1 = example1.createCriteria();
-		criteria1.andFrontUsernumberEqualTo(UserNumber);
+		criteria1.andLastUsernumberEqualTo(UserNumber);
 		List<TbFans> list = fansmapper.selectByExample(example1);
-		return list.size(); 
+		return list.size();
 	}
 }

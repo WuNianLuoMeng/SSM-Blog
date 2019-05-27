@@ -25,13 +25,14 @@ import service.FansFollow;
 public class FansController {
 	@Autowired
 	private FansFollow FansService;
-	@RequestMapping("/fans/{UserNumber}")
-	private String fans(@PathVariable String UserNumber,String UserName,ModelMap model,@RequestParam(value="page",defaultValue = "1") int page) throws Exception{
-		PageInfo<TbFans> result = FansService.GetFans(UserNumber,page);
+	@RequestMapping("/fans/{BlogUserNumber}")
+	private String fans(@PathVariable String BlogUserNumber,String BlogUserName,String UserNumber,String UserName,ModelMap model,@RequestParam(value="page",defaultValue = "1") int page) throws Exception{
+		PageInfo<TbFans> result = FansService.GetFans(BlogUserNumber,page);
 		List<TbFans> list = result.getList();
-		model.put("UserNumber",UserNumber);
-		model.put("BlogUserName",UserName);
+		model.put("UserNumber",UserNumber);			
 		model.put("UserName",UserName);
+		model.put("BlogUserName",BlogUserName);
+		model.put("BlogUserNumber",BlogUserNumber);
 		if(page-1!=0) {
 			model.put("ProPage",page-1);
 		} else {

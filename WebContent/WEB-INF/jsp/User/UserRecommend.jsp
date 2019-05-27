@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
-<!-- 引入jstl标签库 -->
+    pageEncoding="utf-8"%>
+<!-- 引入jstl标签库  -->
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
-<title>粉丝</title>
+<title>推荐博主</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resource/style/css/home.css">
 <link rel="stylesheet"
@@ -14,9 +14,6 @@
 <script
 	src="${pageContext.request.contextPath }/resource/js/jquery-3.3.1.js"></script>
 </head>
-<style>
-
-</style>
 <body style="background-color:rgb(210,216,222)">
 	<%@include file="../../../Top_Buttom/Top.jsp"%>
 	<div style="padding-top: 50px;"></div>
@@ -24,7 +21,7 @@
 		<div data-v-357a65ed="" class="view-container">
 			<div data-v-0c56b7f6="" data-v-357a65ed="" class="content view">
 				<div data-v-0c56b7f6="" class="bar" style="padding-left:30px;">					
-					<h3 data-v-0c56b7f6="" style="padding-left:10px;" class="title">${BlogUserName }的关注</h3>
+					<h3 data-v-0c56b7f6="" style="padding-left:10px;" class="title">推荐博主</h3>
 					<span data-v-0c56b7f6="" class="num" style="padding-top:20px;">共 ${Sum } 人</span>
 				</div>
 				<div style="padding-left:40px;">
@@ -32,13 +29,15 @@
 				</div>
 				<ul data-v-0c56b7f6="" class="watch_list">
 				<c:forEach items="${Data}" var="item">
+				<c:if test="${UserNumber != item.usernumber }">
 					<li data-v-0c56b7f6="" class="item_cont"><a data-v-0c56b7f6=""
 						href="" title="qq_25827845"
-						target="_blank" class="nick">${item.lastUsername }</a>
+						target="_blank" class="nick">${item.username }</a>
 						<a data-v-0c56b7f6=""
-						href="${pageContext.request.contextPath }/RemoveConcerns?id=${item.recordid }&first=${item.frontUsernumber }&UserName=${UserName }" class="watch_btn">取消关注</a> 
+						href="" class="watch_btn">关注</a> 
 					</li>
 					<hr style="color: rgb(210,216,222)"/>
+				</c:if>					
 				</c:forEach>
 				</ul>
 				 
@@ -47,9 +46,5 @@
 	</div>
 	<br>
 	<br>
-	<div style="padding-left:550px;">
-       	<a href="${pageContext.request.contextPath }/follow/${BlogUserNumber }?BlogUserName=${BlogUserName }&UserNumber=${UserNumber }&UserName=${UserName }&page=${ProPage }" class="previous" style=" background-color: #f1f1f1;color: black;text-decoration: none;display: inline-block;padding: 8px 16px;">&laquo; 上一页</a>
-		<a href="${pageContext.request.contextPath }/follow/${BlogUserNumber }?BlogUserName=${BlogUserName }&UserNumber=${UserNumber }&UserName=${UserName }&page=${NextPage }" class="next" style=" background-color: #f1f1f1;color: black;text-decoration: none;display: inline-block;padding: 8px 16px;">下一页 &raquo;</a>
-    </div>
 </body>
 </html>

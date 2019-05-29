@@ -23,8 +23,7 @@ public class FansFollowImpl implements FansFollow{
 
 	@Override
 	public PageInfo<TbFans> GetFans(String UserNumber,Integer page) throws Exception {
-		
-		
+				
 		// TODO Auto-generated method stub
 		TbFansExample example = new TbFansExample();
 		Criteria criteria =example.createCriteria();

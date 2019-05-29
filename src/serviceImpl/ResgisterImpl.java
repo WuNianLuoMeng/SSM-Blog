@@ -14,9 +14,15 @@ public class ResgisterImpl implements Resgister {
 	@Override
 	public boolean insert(TbBloguser user) throws Exception {
 		// TODO Auto-generated method stub
-		int row = bloguserMapper.insert(user);
-
-		return row > 0 ? true : false;
+		int row;
+		try {
+			row = bloguserMapper.insert(user);
+			return row > 0 ? true : false;
+		} catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}
+		
 	}
 
 

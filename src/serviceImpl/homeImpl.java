@@ -1,6 +1,7 @@
 package serviceImpl;
 
 import java.util.List;
+import java.util.Vector;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,20 +12,25 @@ import mapper.TbHomeMapper;
 import pojo.TbHome;
 import pojo.TbHomeExample;
 import redis.clients.jedis.JedisCluster;
+
 import service.home;
+import Util.MyJedisCLuster;
 @Service
 public class homeImpl implements home {
+	private static Integer Index = 0;
 	@Autowired
-	private JedisCluster jediscluster;
+	private MyJedisCLuster jediscluster;
+//	private JedisCluster jediscluster;
 	@Autowired
 	private TbHomeMapper mapper;
 	@Override
-	public List<TbHome> GetBlogList() throws Exception {
+	public List<TbHome> GetBlogList() throws Exception {				
 		//使用redis缓存
 		try {
-			String result=jediscluster.hget("cache","BlogList");
+			
+			String result=jediscluster.GetList().get((Index++)%5).hget("cache","BlogList");
 			if(!(result==null||result=="")){
-				System.out.println(JsonUtils.jsonToList(result, TbHome.class));
+				//System.out.println(JsonUtils.jsonToList(result, TbHome.class));
 				return JsonUtils.jsonToList(result, TbHome.class);
 			}
 		} catch(Exception e) {
@@ -33,7 +39,7 @@ public class homeImpl implements home {
 				
 		
 		
-		System.out.println("Not user cache");
+//		System.out.println("Not user cache");
 		TbHomeExample example = new TbHomeExample();
 		
 		List<TbHome> list = mapper.selectByExample(example);
@@ -42,7 +48,7 @@ public class homeImpl implements home {
 		try {
 			
 			String result=JsonUtils.objectToJson(list);
-			jediscluster.hset("cache","BlogList", result);
+			jediscluster.GetList().get((Index++)%5).hset("cache","BlogList", result);
 			
 		} catch(Exception e) {
 			e.printStackTrace();

@@ -21,22 +21,22 @@ import service.Resgister;
 /**
  * 
  * <p>
- * Title: RegisteSubmit.java<£¯p>
+ * Title: RegisteSubmit.java<ï¿½ï¿½p>
  * <p>
- * Description: ×¢²á¹¦ÄÜ<£¯p>
+ * Description: ×¢ï¿½á¹¦ï¿½ï¿½<ï¿½ï¿½p>
  * <p>
- * Copyright: Copyright (c) 2007<£¯p>
+ * Copyright: Copyright (c) 2007<ï¿½ï¿½p>
  * <p>
- * Company: LTGames<£¯p>
+ * Company: LTGames<ï¿½ï¿½p>
  * 
  * @author Ma
- * @date 2019Äê5ÔÂ9ÈÕ
+ * @date 2019ï¿½ï¿½5ï¿½ï¿½9ï¿½ï¿½
  */
 @Controller
 public class RegisteSubmit {
-	// Ïß³Ì³Ø
+	// ï¿½ß³Ì³ï¿½
 	public static ExecutorService exec = Executors.newCachedThreadPool();
-	//ThreadLocal±äÁ¿
+	//ThreadLocalï¿½ï¿½ï¿½ï¿½
 	private static ThreadLocal<String> name=new ThreadLocal<>(); 
 	
 	@Autowired
@@ -45,7 +45,9 @@ public class RegisteSubmit {
 	@RequestMapping("/Register")
 	public String Register(String number, String password, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		// Ö´ÐÐÈÎÎñ
+		System.out.println("asd*********");
+		System.out.println(number+"/"+password);
+		//çº¿ç¨‹æ± 
 		Future<String> future = exec.submit(new Callable<String>() {
 			@Override
 			public String call() throws Exception {
@@ -58,11 +60,11 @@ public class RegisteSubmit {
 					Object Password = new SimpleHash(hashAlgorithmName, credentials, salt, hashIterations);
 					//System.out.println(Password.toString());
 					TbBloguser user = new TbBloguser();
-					// ÉèÖÃnumber
+					// ï¿½ï¿½ï¿½ï¿½number
 					user.setBlogusernumber(number);
-					// ÉèÖÃ³õÊ¼»¯êÇ³Æ
+					// ï¿½ï¿½ï¿½Ã³ï¿½Ê¼ï¿½ï¿½ï¿½Ç³ï¿½
 					user.setBlogusername(number);
-					// ÉèÖÃÃÜÂë
+					// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 					user.setBloguserpassword(Password.toString());
 					boolean flag = register.insert(user);
 					return flag == true ? "redirect:/Login" : "redirect:/Registe";

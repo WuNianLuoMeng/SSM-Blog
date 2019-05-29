@@ -12,7 +12,7 @@
 	<!--redisPool配置 -->
     <bean id="PoolConfig" class="redis.clients.jedis.JedisPoolConfig">
         <!--最大连接数 -->
-        <property name="maxTotal" value="30"/>
+        <property name="maxTotal" value="200"/>
         <!--最大空闲连接数 -->
         <property name="maxIdle" value="10"/>
         <!--每次释放连接的最大数目 -->
@@ -22,7 +22,8 @@
         <!--连接最小空闲时间(单位:毫秒) -->
         <property name="minEvictableIdleTimeMillis" value="100000"/>
         <!--连接空闲多久后释放,当空闲时间大于该值并且空闲连接大于最大空闲连接时直接释放连接 -->
-        <property name="softMinEvictableIdleTimeMillis" value="10000"/>
+        <property name="softMinEvictableIdleTimeMillis" value="800"/>
+<!--         <property name="softMinEvictableIdleTimeMillis" value="10000"/> -->
         <!--获取连接时最大等待毫秒数,如果该值小于0,则阻塞不确定的时长,默认值-1 -->
         <property name="maxWaitMillis" value="1500"/>
         <!--在获取连接时检查连接有效性,默认为false -->
@@ -66,5 +67,17 @@
         <!--设置jedisPool配置 -->
         <constructor-arg name="poolConfig" ref="PoolConfig"/>
 	</bean>
-
+	
+	<bean id="myjediscluster" class="Util.MyJedisCLuster">
+		<constructor-arg>
+			<list>
+				<ref bean="RedisCluster"/>
+				<ref bean="RedisCluster"/>
+				<ref bean="RedisCluster"/>
+				<ref bean="RedisCluster"/>
+				<ref bean="RedisCluster"/>
+			</list>
+		</constructor-arg>
+	</bean>
+	
 </beans>
